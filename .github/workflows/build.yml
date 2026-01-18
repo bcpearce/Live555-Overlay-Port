@@ -25,6 +25,6 @@ jobs:
       run: ${{ env.VCPKG_ROOT }}/bootstrap-vcpkg.sh
 
     - name: Configure
-      run: cmake -B build
+      run: cmake -B build --preset=vcpkg
     - name: Build
-      run: cmake --build build --preset=vcpkg
+      run: cmake --build build 
