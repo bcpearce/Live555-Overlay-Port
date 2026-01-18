@@ -31,7 +31,8 @@ jobs:
           add-paths: |
             ports/live555/live555-sha512
           base: main
+          body: Update SHA for Live555 to ${{ steps.sha512.outputs.sha512 }}
           commit-message: Update Live555 SHA512
           title: Update Live555 SHA512
-          branch: ${{ steps.sha512.outputs.sha512 }}
+          branch: ${{ steps.sha512.outputs.branch-name }}
 
