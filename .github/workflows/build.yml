@@ -11,8 +11,10 @@ jobs:
     VCPKG_GIT_REF: 8f54ef5453e7e76ff01e15988bf243e7247c5eb5
    strategy:
     matrix:
-     platform: [ubuntu-latest, windows-latest, macos-latest, ubuntu-24.04-arm]
+     platform: [ubuntu-latest, windows-latest, macos-latest, ubuntu-24.04-arm, windows-11-arm]
    steps:
+    - uses: actions/checkout@v4
+      
     - name: Get VCPKG
       shell: bash
       run: |
@@ -21,7 +23,7 @@ jobs:
     - name: Bootstrap vcpkg
       shell: bash
       run: ${{ env.VCPKG_ROOT }}/bootstrap-vcpkg.sh
-    - uses: actions/checkout@v4
+
     - name: Configure
       run: cmake -B build
     - name: Build
