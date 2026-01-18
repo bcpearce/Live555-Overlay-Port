@@ -1,0 +1,10 @@
+{
+    "dependencies": [
+        {
+            "name": "live555",
+            "features": [
+                "test-progs"
+            ]
+        }
+    ]
+}
