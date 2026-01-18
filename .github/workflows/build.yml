@@ -23,12 +23,12 @@ jobs:
 
     - name: Bootstrap vcpkg (MacOS/Linux)
       shell: bash
-      if: ${{ !contains(matrix.platform, "windows") }}
+      if: ${{ !contains(matrix.platform, 'windows') }}
       run: ${{ env.VCPKG_ROOT }}/bootstrap-vcpkg.sh
 
     - name: Bootstrap vcpkg (Windows)
       shell: pwsh
-      if: contains(matrix.platform, "windows")
+      if: ${{ contains(matrix.platform, 'windows') }} 
       run: ${{ env.VCPKG_ROOT }}/bootstrap-vcpkg.bat
 
     - name: Configure
