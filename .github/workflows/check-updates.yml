@@ -1,0 +1,38 @@
+name: Check Live555 Updates
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: Check Live555 Updates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get Current Hash
+        id: sha512
+        run: |
+          sha512=$(./scripts/download.sh sha)
+          echo "$sha512" | tr -d '\n' > ./ports/live555/live555-sha512
+          echo "sha512=$sha512" >> $GITHUB_OUTPUT
+          echo "branch-name=update-sha-$sha512" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.SHA512_PR_TOKEN }}
+          add-paths: |
+            ports/live555/live555-sha512
+          base: main
+          body: Update SHA for Live555 to ${{ steps.sha512.outputs.sha512 }}
+          commit-message: Update Live555 SHA512
+          title: Update Live555 SHA512
+          branch: ${{ steps.sha512.outputs.branch-name }}
+
