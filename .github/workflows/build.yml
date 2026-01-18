@@ -11,8 +11,8 @@ jobs:
     VCPKG_GIT_REF: 8f54ef5453e7e76ff01e15988bf243e7247c5eb5
    strategy:
     matrix:
-     #platform: [ubuntu-latest, windows-latest, macos-latest, ubuntu-24.04-arm, windows-11-arm]
-     platform: [ubuntu-latest, windows-latest, macos-latest]
+     platform: [ubuntu-latest, windows-latest, macos-latest, ubuntu-24.04-arm, windows-11-arm]
+     #platform: [ubuntu-latest, windows-latest, macos-latest]
    steps:
     - uses: actions/checkout@v4
       
