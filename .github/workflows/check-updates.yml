@@ -19,13 +19,19 @@ jobs:
       - name: Get Current Hash
         id: sha512
         run: |
-          ./scripts/download.sh sha > ./ports/live555/live555-sha512
+          sha512=$(./scripts/download.sh sha)
+          echo "$sha512" > ./ports/live555/live555-sha512
+          echo "sha512=$sha512" >> $GITHUB_OUTPUT
+          echo "branch-name=update-sha-$sha512" >> $GITHUB_OUTPUT
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8
         with:
+          token: ${{ secrets.SHA512_PR_TOKEN }}
           add-paths: |
             ports/live555/live555-sha512
           base: main
-
+          commit-message: Update Live555 SHA512
+          title: Update Live555 SHA512
+          branch: ${{ steps.sha512.outputs.sha512 }}
 
