@@ -1,4 +1,5 @@
-file(STRINGS ${CMAKE_CURRENT_LIST_DIR}/live555-download-url LIVE555_DOWNLOAD_URL )
+file(STRINGS ${CMAKE_CURRENT_LIST_DIR}/live555-download-url
+     LIVE555_DOWNLOAD_URL)
 file(STRINGS ${CMAKE_CURRENT_LIST_DIR}/live555-sha512 LIVE555_SHA512)
 
 vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
@@ -10,12 +11,9 @@ vcpkg_download_distfile(
   FILENAME
   "live555-latest.tar.gz"
   SHA512
-  ${LIVE555_SHA512}
-)
+  ${LIVE555_SHA512})
 
-vcpkg_extract_source_archive(
-  SOURCE_PATH ARCHIVE "${ARCHIVE}"
-)
+vcpkg_extract_source_archive(SOURCE_PATH ARCHIVE "${ARCHIVE}")
 
 file(COPY "${CMAKE_CURRENT_LIST_DIR}/CMakeLists.txt"
      DESTINATION "${SOURCE_PATH}")
