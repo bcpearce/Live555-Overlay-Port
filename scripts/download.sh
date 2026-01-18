@@ -1,5 +1,6 @@
 #!/bin/bash
-LIVE555_DOWNLOAD_URL=$(cat CMakePresets.json | jq -r '.configurePresets.[] | select(.name == "vcpkg")'.cacheVariables.LIVE555_DOWNLOAD_URL)
+set -e
+LIVE555_DOWNLOAD_URL=$(cat ./ports/live555/live555-download-url)
 DEST="live555.tar.gz"
 curl -s --show-error -o $DEST $LIVE555_DOWNLOAD_URL 
 if [[ $1 = "unpack" ]]; then

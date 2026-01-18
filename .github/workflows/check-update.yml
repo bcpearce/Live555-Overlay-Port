@@ -1,0 +1,30 @@
+name: Check Live555 Updates
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+   
+jobs:
+  check:
+    name: Check Live555 Updates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        
+      - name: Get Current Hash
+        id: sha512
+        run: |
+          ./scripts/download.sh sha > ./ports/live555/live555-sha512
+      
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          add-paths: |
+            ports/live555/live555-sha512
+            
+          
