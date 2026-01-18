@@ -1,6 +1,6 @@
 name: Build with CMake Configure
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   build:
@@ -21,6 +21,7 @@ jobs:
     - name: Bootstrap vcpkg
       shell: bash
       run: ${{ env.VCPKG_ROOT }}/bootstrap-vcpkg.sh
+    - uses: actions/checkout@v4
     - name: Configure
       run: cmake -B build
     - name: Build
