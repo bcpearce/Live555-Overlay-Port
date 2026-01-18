@@ -1,16 +1,16 @@
 {
-    "configurePresets": [
-        {
-            "name": "vcpkg",
-            "binaryDir": "${sourceDir}/build/${presetName}",
-            "cacheVariables": {
-                "BUILD_TESTS": true,
-                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
-                "VCPKG_INSTALL_OPTIONS": "--clean-after-build"
-            },
-            "generator": "Ninja"
-        }
-    ],
-    "version": 8
+  "configurePresets": [
+    {
+      "name": "vcpkg",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "BUILD_TESTS": true,
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_INSTALL_OPTIONS": "--clean-after-build"
+      },
+      "generator": "Ninja"
+    }
+  ],
+  "version": 8
 }

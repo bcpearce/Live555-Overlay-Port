@@ -9,8 +9,6 @@ project(Live555OverlayPort)
 find_package(Live555 CONFIG REQUIRED)
 
 add_executable(Dummy main.cpp)
-target_link_libraries(Dummy PUBLIC 
-         Live555::groupsock
-         Live555::liveMedia
-         Live555::UsageEnvironment
-         Live555::BasicUsageEnvironment)
+target_link_libraries(
+  Dummy PUBLIC Live555::groupsock Live555::liveMedia Live555::UsageEnvironment
+               Live555::BasicUsageEnvironment)

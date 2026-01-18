@@ -1,10 +1,10 @@
 {
-    "dependencies": [
-        {
-            "name": "live555",
-            "features": [
-                "test-progs"
-            ]
-        }
-    ]
+  "dependencies": [
+    {
+      "name": "live555",
+      "features": [
+        "test-progs"
+      ]
+    }
+  ]
 }
