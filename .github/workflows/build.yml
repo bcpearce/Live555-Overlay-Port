@@ -1,0 +1,27 @@
+name: Build with CMake Configure
+
+on: [push, pull_request]
+
+jobs:
+  build:
+   runs-on: ${{ matrix.platform }}
+   env:
+    VCPKG_ROOT: ${{ github.workspace }}/vcpkg
+    VCPKG_EXE: ${{ github.workspace }}/vcpkg/vcpkg
+    VCPKG_GIT_REF: 8f54ef5453e7e76ff01e15988bf243e7247c5eb5
+   strategy:
+    matrix:
+     platform: [ubuntu-latest, windows-latest, macos-latest, ubuntu-24.04-arm]
+   steps:
+    - name: Get VCPKG
+      shell: bash
+      run: |
+          git -c advice.detachedHead=false clone https://github.com/microsoft/vcpkg.git ${{ env.VCPKG_ROOT }}
+          cd ${{ env.VCPKG_ROOT }} && git checkout ${{ env.VCPKG_GIT_REF }}
+    - name: Bootstrap vcpkg
+      shell: bash
+      run: ${{ env.VCPKG_ROOT }}/bootstrap-vcpkg.sh
+    - name: Configure
+      run: cmake -B build
+    - name: Build
+      run: cmake --build build --preset=vcpkg
