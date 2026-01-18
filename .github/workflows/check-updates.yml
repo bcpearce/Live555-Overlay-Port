@@ -19,7 +19,7 @@ jobs:
       - name: Get Current Hash
         id: sha512
         run: |
-          sha512=$(./scripts/download.sh sha)
+          sha512=$(./scripts/download.sh sha | tr -d '\n')
           echo "$sha512" > ./ports/live555/live555-sha512
           echo "sha512=$sha512" >> $GITHUB_OUTPUT
           echo "branch-name=update-sha-$sha512" >> $GITHUB_OUTPUT
